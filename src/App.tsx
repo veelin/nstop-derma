@@ -1,25 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import FlowEdit from './view/flowEdit'
+import FlowList from './view/flowList'
+import './App.css'
+import '@logicflow/core/dist/style/index.css'
+import { Routes, Route, } from "react-router-dom";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+        <Route path="/" element={<FlowList />} />
+        <Route path="/flowEdit" element={<FlowEdit />} />
+      </Routes>
   );
 }
 
