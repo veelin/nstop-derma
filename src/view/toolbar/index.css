@@ -1,0 +1,43 @@
+.tool-bar {
+    height: 40px;
+    width: 100%;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
+  }
+  .flow-name {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 14px;
+    margin-left: 20px;
+  }
+  .tool-bar-icon {
+    color: #515151;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .tool-bar-icon:hover {
+    color: #1296db;
+  }
+  .tool-bar-icon path {
+    fill: currentColor;
+  }
+  .tool-icons {
+    float: right;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding-top: 5px;
+  }
+  .toolbar-tooltip {
+    height: 40px;
+    display: block;
+  }
+
+  .node-red-toolbar {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background: #fbfbfb;
+  }
