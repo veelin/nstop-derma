@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { message } from 'antd';
 
-let baseURL = '';
+let baseURL = 'http://frp.sunmeta.top:2004';
 if (process.env.NODE_ENV === "development") {
     baseURL = "http://frp.sunmeta.top:2004";
   } else if (process.env.NODE_ENV === "production") {
