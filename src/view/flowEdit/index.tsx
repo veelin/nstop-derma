@@ -124,6 +124,9 @@ export default class FlowEdit extends React.Component<{}, { lf: LogicFlow, nodeD
     })
   }
   doDepolyFlow = () => {
+     if(!this.protectSysFlow()){
+      return;
+    }
     deployFlow({
       caller: "testCaller",
       flowModuleId: this.state.flowModuleId,
@@ -151,9 +154,6 @@ export default class FlowEdit extends React.Component<{}, { lf: LogicFlow, nodeD
     });
   }
   debugFlow = (data:any) =>{
-    if(!this.protectSysFlow()){
-      return;
-    }
     var flowKey = this.state.flowKey;
     debugFlow(flowKey, data).then((data) => {
       this.setState({debugResp : data})

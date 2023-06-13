@@ -82,12 +82,13 @@ export default class FlowList extends React.Component<{}, { flowListData: Array<
 
         var baseUrl = window.localStorage.getItem('http_base_url');
         if (!baseUrl) {
-            baseUrl = "http://localhost:8080"
+            baseUrl = "http://frp.sunmeta.top:2004"
         }
         this.state = { flowListData: new Array<DataType>(), open: false, createFlowParam: new CreateFlowParam(), baseURL: baseUrl,isModalOpen : false };
     }
 
     componentDidMount() {
+
         this.getFlowList();
     }
     getFlowList = () => {
