@@ -35,9 +35,10 @@ const axiosInstance = axios.create({
     //   }
   
     let userBaseUrl = window.localStorage.getItem("http_base_url");
-    console.log(userBaseUrl);
     if (userBaseUrl) {
       config.url = userBaseUrl + config.url
+    }else {
+      config.url = userBaseUrl + "http://frp.sunmeta.top:2004"
     }
       return config;
     },
