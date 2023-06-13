@@ -66,7 +66,7 @@ export const debugFlow = (path:string, data: any) => {
 }
 
 export const queryDatasources = () => {
-  const url = baseUrl +'/m/datasource/query'
+  const url = baseUrl +'/m/sys/datasource/query'
   return request({
     method: 'post',
     data:{},
