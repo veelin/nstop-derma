@@ -92,7 +92,7 @@ export default class FlowList extends React.Component<{}, { flowListData: Array<
         this.getFlowList();
     }
     getFlowList = () => {
-        var req = {"current": 1,"size":10}
+        var req = {"current": 1,"size":1000}
         queryFlowList(req).then((data) => {
             let t = new FlowListType();
             Object.keys(t).map((key: string) => {
@@ -113,11 +113,11 @@ export default class FlowList extends React.Component<{}, { flowListData: Array<
         };
 
         const onCreateFlowFinish = (values: CreateFlowParam) => {
-            console.log('Success:', values);
             values.tenant = "testTenant"
             values.caller = "testCaller"
             createFlow(values).then((data) => {
                 this.getFlowList();
+                onClose()
             });
         };
 
