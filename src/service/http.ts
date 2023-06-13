@@ -3,7 +3,7 @@ import { message } from 'antd';
 
 let baseURL = '';
 if (process.env.NODE_ENV === "development") {
-    baseURL = "http://localhost:8083/api/spf-cc";
+    baseURL = "http://frp.sunmeta.top:2004";
   } else if (process.env.NODE_ENV === "production") {
     baseURL = "http://localhost:8080";
   } else {
@@ -37,8 +37,6 @@ const axiosInstance = axios.create({
     let userBaseUrl = window.localStorage.getItem("http_base_url");
     if (userBaseUrl) {
       config.url = userBaseUrl + config.url
-    }else {
-      config.url = userBaseUrl + "http://frp.sunmeta.top:2004"
     }
       return config;
     },
