@@ -162,11 +162,11 @@ export default class FlowEdit extends React.Component<{}, { lf: LogicFlow, nodeD
 
   protectSysFlow = () => {
     var flowKey = this.state.flowKey;
-    console.log(flowKey.indexOf("/sys"))
-    if (flowKey.indexOf("/sys")> -1) {
-      message.info("The system flow just support view")
-      return false;
-    }
+    // console.log(flowKey.indexOf("/sys"))
+    // if (flowKey.indexOf("/sys")> -1) {
+    //   message.info("The system flow just support view")
+    //   return false;
+    // }
     return true;
   }
   queryDatasources = () => {
@@ -182,6 +182,7 @@ export default class FlowEdit extends React.Component<{}, { lf: LogicFlow, nodeD
 
 
   render(): React.ReactNode {
+    document.title = '流程编辑';
 
     return <div className='container'>
       <div className="approve-example-container">

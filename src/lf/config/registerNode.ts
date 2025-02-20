@@ -73,6 +73,39 @@ export default function RegisteNode(lf: LogicFlow) {
     model: HttpStartNodeModel,
   })
 
+  class StockStartNodeModel extends CircleNodeModel {
+    getConnectedTargetRules(): ConnectRule[] {
+      const rules = super.getConnectedTargetRules();
+      const geteWayOnlyAsTarget = {
+        message: '开始节点只能连出，不能连入！',
+        validate: (source:BaseNodeModel, target:BaseNodeModel) => {
+          let isValid = true;
+          if (target) {
+            isValid = false;
+          }
+          return isValid;
+        },
+      };
+      // @ts-ignore
+      rules.push(geteWayOnlyAsTarget);
+      return rules;
+    }
+
+    constructor(data: any, graphModel: GraphModel) {
+      super(data, graphModel);
+      this.properties = {
+        // _conIds: data.properties._conIds,
+        _parallel: data.properties._parallel
+      }
+    }
+    
+  }
+  lf.register({
+    type: 'stock_start',
+    view: CircleNode,
+    model: StockStartNodeModel,
+  })
+
   class GroovyModel extends RectNodeModel { 
     constructor(data: any, graphModel: GraphModel) {
       super(data, graphModel);
@@ -91,6 +124,89 @@ export default function RegisteNode(lf: LogicFlow) {
     model: GroovyModel,
   })
 
+  class EntranceModel extends RectNodeModel { 
+    constructor(data: any, graphModel: GraphModel) {
+      super(data, graphModel);
+      this.properties = {
+        labelColor: data.properties.labelColor,
+        _conIdConditionMap: data.properties._conIdConditionMap,
+        _volatilityProtection: data.properties._volatilityProtection,
+      }
+    }
+  }
+
+  lf.register({
+    type: 'stock_entrance',
+    view: RectNode,
+    model: EntranceModel,
+  })
+
+  class EntranceSubmitOrderModel extends RectNodeModel { 
+    constructor(data: any, graphModel: GraphModel) {
+      super(data, graphModel);
+      this.properties = {
+        labelColor: data.properties.labelColor,
+        _entranceOrderConfig: data.properties._entranceOrderConfig,
+      }
+    }
+  }
+
+  lf.register({
+    type: 'stock_submit_order',
+    view: RectNode,
+    model: EntranceSubmitOrderModel,
+  })
+  
+  class PnlModel extends RectNodeModel { 
+    constructor(data: any, graphModel: GraphModel) {
+      super(data, graphModel);
+      this.properties = {
+        labelColor: data.properties.labelColor,
+        _stopProfitConditions: data.properties._stopProfitConditions,
+        _stopLossConditions: data.properties._stopLossConditions,
+        _cutoffTimeConditions: data.properties._cutoffTimeConditions
+
+      }
+    }
+  }
+
+  lf.register({
+    type: 'stock_pnl',
+    view: RectNode,
+    model: PnlModel,
+  })
+
+  class StopProfitModel extends RectNodeModel { 
+    constructor(data: any, graphModel: GraphModel) {
+      super(data, graphModel);
+      this.properties = {
+        labelColor: data.properties.labelColor,
+        _stopProfitOrderConfig: data.properties._stopProfitOrderConfig,
+      }
+    }
+  }
+
+  lf.register({
+    type: 'stock_stop_profit',
+    view: RectNode,
+    model: StopProfitModel,
+  })
+
+  class StopLossModel extends RectNodeModel { 
+    constructor(data: any, graphModel: GraphModel) {
+      super(data, graphModel);
+      this.properties = {
+        labelColor: data.properties.labelColor,
+      }
+    }
+  }
+
+  lf.register({
+    type: 'stock_stop_loss',
+    view: RectNode,
+    model: StopLossModel,
+  })  
+  
   class JavaInvokerModel extends RectNodeModel { 
     constructor(data: any, graphModel: GraphModel) {
       super(data, graphModel);
@@ -218,5 +334,32 @@ export default function RegisteNode(lf: LogicFlow) {
     type: 'http_finish',
     view: CircleNode,
     model: HttpFinishNodeModel,
+  })
+
+  class StockFinishNodeModel extends CircleNodeModel {
+    getConnectedSourceRules(): ConnectRule[] {
+      const rules = super.getConnectedSourceRules();
+      const geteWayOnlyAsTarget = {
+        message: '结束节点只能连入，不能连出！',
+        validate: (source:BaseNodeModel) => {
+          let isValid = true;
+          if (source) {
+            isValid = false;
+          }
+          return isValid;
+        },
+      };
+      // @ts-ignore
+      rules.push(geteWayOnlyAsTarget);
+      return rules;
+    }
+    constructor(data: any, graphModel: GraphModel) {
+      super(data, graphModel);
+    }
+  }
+  lf.register({
+    type: 'stock_finish',
+    view: CircleNode,
+    model: StockFinishNodeModel,
   })
 }

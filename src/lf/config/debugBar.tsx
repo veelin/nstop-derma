@@ -1,6 +1,5 @@
 import { Form, Select, Input, Button, Switch} from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
 import { Tabs, Card } from 'antd';
 import type { TabsProps } from 'antd';
 

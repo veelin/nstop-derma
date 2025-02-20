@@ -8,6 +8,7 @@ interface DataType {
     flowModuleId: string;
     flowName: string;
     flowKey: string;
+    flowType: string;
     status: number;
     modifyTime: string;
     operator: string
@@ -48,6 +49,10 @@ const columns: ColumnsType<DataType> = [
     {
         title: 'flowKey',
         dataIndex: 'flowKey',
+    },
+    {
+        title: 'flowType',
+        dataIndex: 'flowType',
     },
     {
         title: '流程状态',
@@ -106,6 +111,7 @@ export default class FlowList extends React.Component<{}, { flowListData: Array<
     }
   
     render(): React.ReactNode {
+        document.title = '流程列表';
 
         const showDrawer = () => {
             this.setState({ open: true })

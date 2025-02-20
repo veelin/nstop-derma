@@ -1,6 +1,5 @@
-import { Form, Select, Input, Button, Switch} from 'antd';
+import { Form, Select, Input, Button, Switch, Row, Col} from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
 
 const { Option } = Select;
 
@@ -29,6 +28,29 @@ export default function PropertyPanel(nodeData, updateproperty, hidePropertyPane
     
   }
 
+  const getEntranceInput = () => {
+    const { TextArea } = Input;
+    let tmp = nodeData.properties._conIdConditionMap;
+    return <div>
+      <Form.Item name='_conIdConditionMap' label="condition" ><TextArea  rows={4} /></Form.Item>
+      <Form.Item name='_volatilityProtection' label="protect" ><TextArea  rows={4} /></Form.Item>
+    </div>
+    
+  }
+
+  const getPnlInput = () => {
+    const { TextArea } = Input;
+    let tmp = nodeData.properties._conIdConditionMap;
+    return <div>
+         <Form.Item name="_stopProfitConditions" label="止盈条件" >
+         <TextArea  rows={4} />
+        </Form.Item>
+
+      <Form.Item name='_stopLossConditions' label="止损条件" ><TextArea  rows={4} /></Form.Item>
+      <Form.Item name='_cutoffTimeConditions' label="超市条件" ><TextArea  rows={4} /></Form.Item>
+    </div>
+  }
+
   const getHttpStart = () => {
     const { TextArea } = Input;
     return <div>
@@ -51,6 +73,47 @@ export default function PropertyPanel(nodeData, updateproperty, hidePropertyPane
     </div>
     
   }
+  const getStockStart = () => {
+    const { TextArea } = Input;
+    return <div>
+        <Form.Item name="_parallel" label="并行" >
+            <Select defaultValue="false">
+              <Select.Option value="true" >true</Select.Option>
+              <Select.Option value="false">false</Select.Option>
+            </Select>
+        </Form.Item>
+        {/* <Form.Item name="_conIds" label="stockIds" >
+          <TextArea rows={4} defaultValue="[]" placeholder='[a,b,c]'></TextArea>
+        </Form.Item> */}
+        {/* <Button onClick={debug}>调试</Button> */}
+    </div>
+    
+  }
+
+  const getStopProfitOrder = () => {
+    const { TextArea } = Input;
+    return <div>
+        
+        <Form.Item name="_stopProfitOrderConfig" label="config" >
+          <TextArea rows={4} defaultValue="" placeholder='{}'></TextArea>
+        </Form.Item>
+        {/* <Button onClick={debug}>调试</Button> */}
+    </div>
+    
+  }
+
+  const getEntranceOrder = () => {
+    const { TextArea } = Input;
+    return <div>
+        
+        <Form.Item name="_entranceOrderConfig" label="config" >
+          <TextArea rows={4} defaultValue="" placeholder='{}'></TextArea>
+        </Form.Item>
+        {/* <Button onClick={debug}>调试</Button> */}
+    </div>
+    
+  }
+
   const getFlowline = () => {
     const { TextArea } = Input;
     return <div>
@@ -134,7 +197,6 @@ export default function PropertyPanel(nodeData, updateproperty, hidePropertyPane
     </div>
   }
 
-
   const onFormLayoutChange = (value: any, all: any) => {
     updateproperty(nodeData.id, value,);
     Object.assign(nodeData.properties, value);
@@ -163,6 +225,7 @@ export default function PropertyPanel(nodeData, updateproperty, hidePropertyPane
         <Form.Item label="文案" >
               <Input defaultValue={nodeData.text?.value} />
         </Form.Item>
+        {nodeData.type==="stock_start" ? getStockStart() : ''}
         {nodeData.type==="groovy" ? getGroovyInput() : ''}
         {nodeData.type === "jugement" ? getApiUrl() : ''}
         {nodeData.type === "http_start" ? getHttpStart() : ''}
@@ -171,6 +234,11 @@ export default function PropertyPanel(nodeData, updateproperty, hidePropertyPane
         {nodeData.type === "http_finish" ? getHttpFinish() : ''}
         {nodeData.type === "rdb" ? getRDB() : ''}
         {nodeData.type === "exc" ? getExc() : ''}
+        {nodeData.type === "stock_entrance" ? getEntranceInput() : ''}
+        {nodeData.type === "stock_pnl" ? getPnlInput() : ''}
+        {nodeData.type === "stock_stop_profit" ? getStopProfitOrder() : ''}
+        {nodeData.type === "stock_submit_order" ? getEntranceOrder() : ''}
+
 
       </Form>
       <div>

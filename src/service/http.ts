@@ -57,7 +57,7 @@ const axiosInstance = axios.create({
     //   }
   
       // 对响应数据做点什么
-      if (response.data.code !== 0) {
+      if (response.data.code !== 0 && response.data.code !== 1) {
         message.error(response.data.message);
       }
       return response.data;

@@ -26,6 +26,16 @@ export const nstopNodes = [
     }
   },
   {
+    type: 'stock_start',
+    label: 'stock开始节点',
+    style: {
+      width: '50px',
+      height: '50px',
+      borderRadius: '25px',
+      border: '2px solid #FF6347',
+    }
+  },
+  {
     type: 'groovy',
     label: 'groovy脚本',
     style: {
@@ -86,8 +96,69 @@ export const nstopNodes = [
   //   }
   // },
   {
+    type: 'stock_entrance',
+    label: '入场条件',
+    style: {
+      width: '50px',
+      height: '40px',
+      borderRadius: '4px',
+      border: '2px solid #3CB371',
+    }
+  },
+
+  {
+    type: 'stock_submit_order',
+    label: '入场下单',
+    style: {
+      width: '50px',
+      height: '40px',
+      borderRadius: '4px',
+      border: '2px solid #3CB371',
+    }
+  },
+  {
+    type: 'stock_pnl',
+    label: '盈亏计算',
+    style: {
+      width: '50px',
+      height: '40px',
+      borderRadius: '4px',
+      border: '2px solid #3CB371',
+    }
+  },
+  {
+    type: 'stock_stop_profit',
+    label: '止盈下单',
+    style: {
+      width: '50px',
+      height: '40px',
+      borderRadius: '4px',
+      border: '2px solid #3CB371',
+    }
+  },
+  {
+    type: 'stock_stop_loss',
+    label: '止损下单',
+    style: {
+      width: '50px',
+      height: '40px',
+      borderRadius: '4px',
+      border: '2px solid #3CB371',
+    }
+  },
+  {
     type: 'http_finish',
     label: 'http结束',
+    style: {
+      width: '50px',
+      height: '50px',
+      borderRadius: '25px',
+      border: '2px solid #FF6347',
+    }
+  },
+  {
+    type: 'stock_finish',
+    label: 'stock结束',
     style: {
       width: '50px',
       height: '50px',
